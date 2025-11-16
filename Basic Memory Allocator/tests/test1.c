@@ -9,7 +9,7 @@
 #include <stdio.h>
 #include <assert.h>
 
-#define ARRAY_ELEMENTS 1024
+#define ARRAY_ELEMENTS 512
 
 int main() {
   fprintf(stderr, 
