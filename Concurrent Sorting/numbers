@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+from=$1
+to=$2
+
+os=`uname`
+
+echo $(($to + 1 - $from))
+if [ "$os" == "Darwin" ]; then
+  jot -r $(($to - $from + 1)) $from $to
+else
+  shuf -i$from-$to
+fi
+
+
