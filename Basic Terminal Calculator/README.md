@@ -1,5 +1,3 @@
-[![Open in Codespaces](https://classroom.github.com/assets/launch-codespace-2972f46106e565e64193e422d61a12cf1da4916b45550586e14ef0a7c637dd04.svg)](https://classroom.github.com/open-in-codespaces?assignment_repo_id=20493437)
-# Assignment 2: A Calculator in Assembly
+A simple x86-64 assembly command-line calculator that reads an expression from standard input and evaluates it.
 
-This is your starter code repo for Assignment 2. Please see the corresponding description on our website under [Assignments](https://khoury-cs3650.github.io/hw.html).
-
+The program accepts two signed integers and an operator (+, -, *, /), performs the operation, and prints the result. It handles invalid operations and division by zero with clear error messages.
