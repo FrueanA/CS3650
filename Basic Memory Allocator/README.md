@@ -1,13 +1,20 @@
-[![Open in Codespaces](https://classroom.github.com/assets/launch-codespace-2972f46106e565e64193e422d61a12cf1da4916b45550586e14ef0a7c637dd04.svg)](https://classroom.github.com/open-in-codespaces?assignment_repo_id=21343454)
-# Assignment 5: Basic Memory Allocator
+A lightweight implementation of malloc, calloc, and free in C using page-based memory allocation with mmap instead of the deprecated sbrk interface.
+This project explores how modern Unix/Linux systems manage heap memory and demonstrates core allocator techniques.
 
-This is the starter code for [Assignment 5](https://khoury-cs3650.github.io/a05.html).
+## Overview
 
-The [Makefile](Makefile) contains the following targets:
+The allocator requests memory directly from the operating system using mmap, working with page-sized regions rather than a continuously growing heap. It maintains a free list for reusable blocks and handles fragmentation through block splitting and coalescing.
 
-- `make all` - compile [mymalloc.c](mymalloc.c) into the object file `mymalloc.o`
-- `make test` - compile and run tests in the [tests](tests/) directory with `mymalloc.o`.
-- `make demo` - compile and run tests in the tests directory with standard malloc.
-- `make clean` - perform a minimal clean-up of the source tree
-- `make help` - print available targets
+Allocations are divided into:
+Small blocks: Served from page-sized regions and reused via the free list
+Large blocks: Allocated as multi-page mmap regions and released immediately with munmap
 
+### Key Features
+
+- Uses mmap / munmap for all memory management
+- Page-size aware (sysconf(_SC_PAGESIZE))
+- Free list with address-ordered insertion
+- Block splitting to reduce waste
+- Block coalescing to limit fragmentation
+- Efficient calloc leveraging zeroed anonymous pages
+- Optional debug tracing for allocator behavior
