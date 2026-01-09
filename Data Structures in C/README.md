@@ -1,19 +1,37 @@
-[![Open in Codespaces](https://classroom.github.com/assets/launch-codespace-2972f46106e565e64193e422d61a12cf1da4916b45550586e14ef0a7c637dd04.svg)](https://classroom.github.com/open-in-codespaces?assignment_repo_id=20887191)
-# Assignment 4: Data Structures in C
+## Vector & Shell Tokenizer in C
 
-This is your starter code repo for Assignment 4. 
-Please see the corresponding description on our website under [Assignments](https://khoury-cs3650.github.io/hw.html).
+A systems programming project implementing a **resizable vector (dynamic array)** and a **command-line tokenizer** in C. The project focuses on efficient memory management, ownership semantics, and lexical analysis similar to Unix shells.
 
-## Makefile
+## Overview
 
-Use the provided Makefile ([vector/Makefile](vector/Makefile)) to make (re-)compilation easier:
+This project consists of two main components:
 
- - `make` will compile the queue/vector implementation and the unit tests
- - `make test` will compile and run the provided unit tests
- - `make valgrind` will run a memory leak test
- - `make clean` will remove the executable and object files
+1. A **vector data structure** that provides dynamic resizing with O(1) average-time access.
+2. A **shell-style tokenizer** built on top of the vector, capable of splitting command-line input into meaningful tokens.
 
-## More Notes on Vectors
+Both components emphasize correctness, memory safety, and clear API design.
 
-You can find additional implementation notes on vectors in [vector.md](vector.md).
+## Vector (Dynamic Array)
 
+The vector is a resizable, contiguous array of strings (`char *`), similar to `ArrayList` in Java or `std::vector` in C++.
+
+### Key Properties
+- Stores elements contiguously for efficient indexing
+- Automatically grows using a configurable growth factor
+- Separates **logical size** from **capacity**
+- Owns its elements (strings are copied on insertion)
+- Safely frees memory when elements are removed or the vector is destroyed
+
+The API supports adding, retrieving, copying, and deleting elements, and is validated using unit tests built with the μunit framework.
+
+## Tokenizer
+
+The tokenizer processes a single line of input and splits it into tokens following shell-like syntax rules.
+
+### Supported Tokens
+- Words (sequences of non-special characters)
+- Special characters: `(` `)` `<` `>` `;` `|`
+- Quoted strings, which suppress special character meaning
+- Whitespace as a separator (not a token)
+
+The tokenizer is implemented as a **deterministic finite-state automaton (DFA)** and outputs one token per line.
