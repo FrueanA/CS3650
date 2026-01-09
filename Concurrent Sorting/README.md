@@ -1,3 +1,4 @@
+## Concurrent Merge Sort with POSIX Threads
 A multithreaded implementation of merge sort in C using POSIX threads (pthread).
 This project parallelizes the recursive structure of merge sort to improve performance on multi-core systems and evaluates scalability across different machines and thread counts.
 
