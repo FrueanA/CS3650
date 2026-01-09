@@ -1,3 +1,4 @@
+## Custom Memory Allocator Using mmap
 A lightweight implementation of malloc, calloc, and free in C using page-based memory allocation with mmap instead of the deprecated sbrk interface.
 This project explores how modern Unix/Linux systems manage heap memory and demonstrates core allocator techniques.
 
