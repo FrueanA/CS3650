@@ -1,24 +1,41 @@
-[![Open in Codespaces](https://classroom.github.com/assets/launch-codespace-2972f46106e565e64193e422d61a12cf1da4916b45550586e14ef0a7c637dd04.svg)](https://classroom.github.com/open-in-codespaces?assignment_repo_id=21830675)
-[p2-link]: https://khoury-cs3650.github.io/p2.html
-# Project 2: File System
+## User-Space File System (FUSE)
 
-This is the starter code for [Project 2][p2-link]. The following contents are provided:
+A user-space file system implemented using **FUSE**, backed by a fixed-size disk image.  
+The project implements core file system functionality including files, directories, and block management.
 
-- [Makefile](Makefile)   - Targets are explained in the assignment text
-- [README.md](README.md) - This README
-- [helpers](helpers)     - Helper code implementing access to bitmaps and blocks
-- [hints](hints)         - Incomplete bits and pieces that you might want to use as inspiration
-- [nufs.c](nufs.c)       - The main file of the file system driver
-- [test.pl](test.pl)     - Tests to exercise the file system
+---
 
-## Running the tests
+## Overview
 
-You might need install an additional package to run the provided tests:
+This file system mounts a 1MB disk image and provides a functional hierarchical file system. All metadata and file data are managed manually, closely following classic Unix-style file system design.
 
-```
-$ sudo apt-get install libtest-simple-perl
-```
+---
 
-Then using `make test` will run the provided tests.
+## Features
 
+### File Support
+- Create, read, write, rename, and delete files
+- Supports small files (≤ 4KB)
+- File name support (10+ characters)
+- Up to 128 files within a 1MB disk image
 
+### Directory Support
+- Nested directories
+- `mkdir`, `rmdir`, `rename`
+- Directory listing (`readdir`)
+- Files can be created and moved between directories
+
+### Storage Design
+- Custom on-disk layout
+- Block-based allocation
+- Bitmap-based free space tracking
+- Separate metadata and data management layers
+
+---
+
+## Advanced Functionality
+
+- Dynamic block allocation and deallocation
+- Proper cleanup on file deletion
+- Optional support for large files (up to hundreds of KB)
+- Works without regenerating the disk image
